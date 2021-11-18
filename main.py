@@ -21,6 +21,7 @@ class level_:
 def main():
 
     main_menu()
+    exit(0)
 
 # Main menu and submenu at the start of game
 def main_menu():
@@ -52,6 +53,7 @@ def start_game():
     pass
 
 def choose_level(level_number):
+    # TODO 处理关卡选择
     print(level_number)
 
 def test():
