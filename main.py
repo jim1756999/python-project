@@ -4,7 +4,6 @@
 import pygame
 import pygame_menu
 from pygame.locals import *
-from pygame_menu import menu
 
 
 class window:
@@ -36,7 +35,7 @@ def main_menu():
     for x in level_list:
         global level
         level = x
-        level_menu.add.button("Level {}".format(x))
+        level_menu.add.button(f"Level {x}", choose_level, level)
     
     # Main menu contents
     main_menu.add.text_input('Name : ', default='Player0')
@@ -49,10 +48,14 @@ def main_menu():
     
 def start_game():
     # TODO start game 
+    print("start")
     pass
 
-# def choose_level():
+def choose_level(level_number):
+    print(level_number)
 
+def test():
+    print("test")
 
 
 if __name__ == '__main__': main()
