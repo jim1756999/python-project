@@ -1,7 +1,9 @@
 # coding: utf-8
+# Author: Jiang Xiaoming, Wang Puhan
 
 # import modules
 import sys
+import os
 # pygame
 import pygame
 import pygame_menu
@@ -24,7 +26,7 @@ class window:
 
 
     # Main menu and submenu at the start of game
-    def main_menu():
+    def menu():
         # Const
         level_list = [1,2,3,4,5,6,7]
 
@@ -37,6 +39,7 @@ class window:
                     )
 
         # Create menu
+        global main_menu
         main_menu = pygame_menu.Menu(' Snake', 400, 300,theme=pygame_menu.themes.THEME_BLUE)
         level_menu = pygame_menu.Menu(' Level', 400, 300,theme=pygame_menu.themes.THEME_BLUE)
         print("[DEBUG] Menu")
@@ -48,8 +51,8 @@ class window:
         # Main menu contents
         main_menu.add.text_input('Name : ', default='Player')
         main_menu.add.button('Play', start_game)
-        main_menu.add.button('Level', level_menu)
-        main_menu.add.button('Quit', sys.exit)
+        main_menu.add.button(f'Level {choosed_level}', level_menu)
+        main_menu.add.button('Quit', quitgame)
         main_menu.mainloop(window.screen)
 
 
@@ -58,10 +61,11 @@ class level_:
 
 
 def main():
+    # init
     timestamp.init()
     print("[MAIN] Program started")
     doctest.testmod()
-    window.main_menu()
+    window.menu()
     exit(0)
 
 
@@ -85,6 +89,9 @@ def choose_level(level_number):
     log(logt)
     print("[MENU] Choosed level:", choosed_level)
 
+    main_menu.disable()
+    window.menu()
+
 
 # Module for test use
 def test(i):
@@ -94,6 +101,10 @@ def test(i):
     '''
     print("[DEBUG] Output is",i)
 
+
+def quitgame():
+    os.remove("log.txt")    # Delete log if clean exit
+    sys.exit()
 
 # Debug
 # Log
